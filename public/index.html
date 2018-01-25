@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body ng-controller="MainController as ctrl">
-    <div ng-repeat="city in ctrl.cities">
-      <p> {{ city.name }} </p>
-  </div>
+
+    <div ng-if="ctrl.showCityPage === true" ng-include="'partials/showCities.html'"></div>
+    <div ng-if="ctrl.showCatPage === true" ng-include="'partials/showCats.html'"></div>
+
+
   </body>
 </html>
