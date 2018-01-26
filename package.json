@@ -1,14 +1,23 @@
 {
   "name": "front",
   "version": "1.0.0",
-  "description": "",
+  "description": "front end",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madsray/sips_and_bites_front.git"
+  },
+  "bugs": {
+    "url": "https://github.com/madsray/sips_and_bites_front/issues"
+  },
+  "homepage": "https://github.com/madsray/sips_and_bites_front#readme"
 }
