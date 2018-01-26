@@ -1,4 +1,5 @@
 <div ng-repeat="rev in ctrl.reviews">
+  <p ng-click="ctrl.deleteReview(rev.id)">X</p>
   <p>{{rev.name}}</p>
   <p>{{rev.content}}</p>
   <p>{{rev.rating}}</p>
@@ -10,3 +11,6 @@
   <p>{{ctrl.special}}</p>
   <p>{{ctrl.time}}</p>
   <img src="{{ctrl.img_url}}" alt="bar pic">
+
+  <h2>Create Review Form</h2>
+  <div ng-include="'partials/createRev.html'"></div>

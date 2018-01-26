@@ -1,0 +1,7 @@
+<form>
+  <input type='text' placeholder="Your Name" ng-model="ctrl.formdata.name" />
+  <input type='text' placeholder="Thoughts?" ng-model="ctrl.formdata.content" />
+  <input type='text' placeholder="rating" ng-model="ctrl.formdata.rating" />
+  <input type="hidden" ng-model='ctrl.barOneID'>
+  <input type="submit" value="Create New Review" ng-click="ctrl.addReview(barOneID)"/>
+</form>
