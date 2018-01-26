@@ -5,9 +5,13 @@ app.controller('MainController', ['$http', function($http){
   this.cats = [];
   this.showCatPage = false;
   this.showCityPage = true;
+  this.showBarPage = false;
+  this.showShowPage = false;
   this.cityID = 0;
   this.catsID = 0;
+  this.barID = 0;
   this.findBars = [];
+  this.findReviews = [];
 
   this.getAllCities = () => {
     $http({
@@ -31,35 +35,47 @@ app.controller('MainController', ['$http', function($http){
         url: 'http://localhost:3000/cities/' + this.cityID
       }).then(response => {
         this.cats = response.data.categories;
-        console.log(this.cats)
-        this.categories =
-        // console.log(this.oneMovie);
-
         this.showCatPage = true;
         this.showCityPage = false;
       }).catch(err => console.log(err));
     };
 
       this.showBars = (cat) => {
-        console.log(this.cityID)
-        console.log(cat.id)
-        this.cityID
-        this.catsID
+        this.catID = cat.id
         $http({
           method: 'GET',
-          url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + cat.id
+          url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID
         }).then(response => {
-          console.log("DO SOMETHING")
-          // this.bars = response.data.categories;
-          this.findBars = response.data;
+
+
+          this.findBars = response.data.bars;
           console.log(this.findBars);
-          this.showCatPage = true;
+          this.showBarPage = true;
+          this.showCatPage = false;
           this.showCityPage = false;
         }).catch(err => console.log(err));
       };
 
+    this.getReviews = (bar) => {
 
 
+      $http({
+        method: 'GET',
+        url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + bar.id
+      }).then(response => {
+        this.name = response.data.name;
+        this.special = response.data.special;
+        this.time = response.data.time;
+        this.img_url = response.data.img_url;
+        
+        this.barOne = response.data;
+        this.reviews = response.data.reviews;
+        this.showShowPage = true;
+        this.showBarPage = false;
+        this.showCatPage = false;
+        this.showCityPage = false;
+      }).catch(err => console.log(err));
+    }
 
 
 
