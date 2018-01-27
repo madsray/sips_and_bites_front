@@ -7,12 +7,14 @@ app.controller('MainController', ['$http', function($http){
   this.showCityPage = true;
   this.showBarPage = false;
   this.showShowPage = false;
+  this.editform = false;
   this.cityID = 0;
   this.catsID = 0;
   this.oneBarID = 0;
   this.findBars = [];
   this.reviews = [];
   this.formdata = {};
+  this.updateform = {};
 
   this.getAllCities = () => {
     $http({
@@ -99,6 +101,7 @@ app.controller('MainController', ['$http', function($http){
       this.barOne.reviews.push(this.newreview);
       console.log(this.newreview);
       this.getReviews(this.barOne);
+      this.formdata = {};
     }).catch(err => {
       console.error(err.message);
     });
@@ -107,14 +110,30 @@ app.controller('MainController', ['$http', function($http){
   this.deleteReview = (rev) => {
     $http({
       url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.iD + '/reviews/' + rev ,
-      method: 'DELETE'
+      method: 'DELETE',
     }).then(response => {
       console.log(response.data)
       this.getReviews(this.barOne);
     }).catch(err=> console.error(err.message));
 
   };
-
+this.editReview = (id) => {
+  console.log("clickkkkk");
+  console.log(this.editOne);
+  $http({
+    url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.iD + '/reviews/' + this.editOne,
+    method: 'PUT',
+    data: {
+      name: this.updateform.name,
+      content: this.updateform.content,
+      rating: this.updateform.rating,
+      bar_id: this.iD
+    }
+  }).then(response => {
+    console.log(response.data)
+    this.getReviews(this.barOne);
+  }).catch(err=>console.error(err.message));
+}
 
 
 }]);

@@ -1,5 +1,6 @@
 <div ng-repeat="rev in ctrl.reviews">
   <p ng-click="ctrl.deleteReview(rev.id)">X</p>
+  <p ng-click="ctrl.editform = true; ctrl.editOne = rev.id">UPDATE</p>
   <p>{{rev.name}}</p>
   <p>{{rev.content}}</p>
   <p>{{rev.rating}}</p>
@@ -14,3 +15,4 @@
 
   <h2>Create Review Form</h2>
   <div ng-include="'partials/createRev.html'"></div>
+  <div ng-if="ctrl.editform === true" ng-include="'partials/editform.html'"></div>
