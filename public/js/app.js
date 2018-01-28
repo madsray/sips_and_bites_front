@@ -13,8 +13,10 @@ app.controller('MainController', ['$http', function($http){
   this.oneBarID = 0;
   this.findBars = [];
   this.reviews = [];
+  this.newbar = [];
   this.formdata = {};
   this.updateform = {};
+  this.barform = {};
 
   this.getAllCities = () => {
     $http({
@@ -44,6 +46,7 @@ app.controller('MainController', ['$http', function($http){
   };
 
   this.showBars = (cat) => {
+    console.log(cat.id)
     this.catID = cat.id
     console.log(cat)
     $http({
@@ -83,21 +86,20 @@ app.controller('MainController', ['$http', function($http){
 
 
   this.addReview = () => {
-    this.iD = this.barOne.id
-    console.log(this.iD);
     $http({
-      url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.iD + '/reviews',
+      url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.barOne.iD + '/reviews',
       method: 'POST',
       data: {
         name: this.formdata.name,
         content: this.formdata.content,
         rating: this.formdata.rating,
-        bar_id: this.iD
+        bar_id: this.barOne.id
       }
     }).then(response => {
       console.log('response: ', response.data);
       console.log(this.formdata);
       this.newreview = response.data
+      console.log(this.barOne.reviews);
       this.barOne.reviews.push(this.newreview);
       console.log(this.newreview);
       this.getReviews(this.barOne);
@@ -106,10 +108,32 @@ app.controller('MainController', ['$http', function($http){
       console.error(err.message);
     });
   };
+  this.addBar = ()=> {
+    console.log("CLICK")
+    $http({
+      url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/',
+      method: 'POST',
+      data: {
+        name: this.barform.name,
+        img_url: this.barform.img_url,
+        special: this.barform.special,
+        time: this.barform.time,
+        category_id: this.catID
+      }
+    }).then(response => {
+      console.log(response.data);
+      console.log(this.barform)
+      this.newbar = response.data;
+      console.log(this.newbar);
+      this.findBars.push(this.newbar);
+    }).catch(err => {
+      console.error(err.message);
+    });
+  }
 
   this.deleteReview = (rev) => {
     $http({
-      url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.iD + '/reviews/' + rev ,
+      url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.barOne.iD + '/reviews/' + rev ,
       method: 'DELETE',
     }).then(response => {
       console.log(response.data)
@@ -121,13 +145,13 @@ this.editReview = (id) => {
   console.log("clickkkkk");
   console.log(this.editOne);
   $http({
-    url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.iD + '/reviews/' + this.editOne,
+    url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.barOne.id + '/reviews/' + this.editOne,
     method: 'PUT',
     data: {
       name: this.updateform.name,
       content: this.updateform.content,
       rating: this.updateform.rating,
-      bar_id: this.iD
+      bar_id: this.barOne.id
     }
   }).then(response => {
     console.log(response.data)

@@ -1,17 +1,32 @@
-<div ng-repeat="rev in ctrl.reviews">
-  <p ng-click="ctrl.deleteReview(rev.id)">X</p>
-  <p ng-click="ctrl.editform = true; ctrl.editOne = rev.id">UPDATE</p>
-  <p>{{rev.name}}</p>
-  <p>{{rev.content}}</p>
-  <p>{{rev.rating}}</p>
+<div class="container1">
+  <img id="barpic" src="{{ctrl.img_url}}" alt="bar pic">
+
+<div class="container2">
+  <h4>{{ctrl.name}}</h4>
+  <br>
+  <p>{{ctrl.special}}</p>
+  <br>
+  <p>{{ctrl.time}}</p>
+</div>
 </div>
 
+<table ng-repeat="rev in ctrl.reviews">
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Name</td>
+    <td>Review</td>
+    <td>Rating</td>
+  </tr>
+<tr>
+  <td ng-click="ctrl.deleteReview(rev.id)">X</td>
+  <td ng-click="ctrl.editform = true; ctrl.editOne = rev.id">UPDATE</td>
+  <td>{{rev.name}}</td>
+  <td>{{rev.content}}</td>
+  <td>{{rev.rating}}</td>
+</tr>
+</table>
 
-
-  <p>{{ctrl.name}}</p>
-  <p>{{ctrl.special}}</p>
-  <p>{{ctrl.time}}</p>
-  <img src="{{ctrl.img_url}}" alt="bar pic">
 
   <h2>Create Review Form</h2>
   <div ng-include="'partials/createRev.html'"></div>

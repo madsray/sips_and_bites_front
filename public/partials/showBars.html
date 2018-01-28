@@ -1,3 +1,5 @@
 <div ng-click="ctrl.getReviews(bar)" ng-repeat="bar in ctrl.findBars">
-  <h1>{{bar.name}}</h1>
+  <h3>{{bar.name}}</h3>
 </div>
+<h2>+ ADD A BAR +</h2>
+<div ng-include="'partials/createbar.html'"></div>

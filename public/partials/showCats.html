@@ -1,3 +1,7 @@
-<div ng-click="ctrl.showBars(cat)"ng-repeat="cat in ctrl.cats">
-  <img src="{{cat.img_url}}" alt="categories">
+
+<h1></h1>
+<div id="cat" class="container">
+  <div  ng-click="ctrl.showBars(cat)"ng-repeat="cat in ctrl.cats">
+    <img class="box" src="{{cat.img_url}}" alt="categories">
+  </div>
 </div>
