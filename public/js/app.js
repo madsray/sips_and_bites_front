@@ -7,7 +7,9 @@ app.controller('MainController', ['$http', function($http){
   this.showCityPage = true;
   this.showBarPage = false;
   this.showShowPage = false;
+  this.showReviewForm = false;
   this.editform = false;
+  this.reviewform = false;
   this.cityID = 0;
   this.catsID = 0;
   this.oneBarID = 0;
@@ -104,6 +106,7 @@ app.controller('MainController', ['$http', function($http){
       console.log(this.newreview);
       this.getReviews(this.barOne);
       this.formdata = {};
+
     }).catch(err => {
       console.error(err.message);
     });

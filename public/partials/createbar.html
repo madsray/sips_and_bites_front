@@ -4,5 +4,5 @@
   <input type='text' placeholder="Bar's Specials" ng-model="ctrl.barform.special"/>
   <input type='text' placeholder="Happy Hour Time and Day" ng-model="ctrl.barform.time"/>
   <input type="hidden" ng-model='ctrl.categoryID'>
-  <input type="submit" value="Create New Review" ng-click="ctrl.addBar(categoryID)"/>
+  <input type="submit" value="Create New Review" ng-click="ctrl.addBar(categoryID); ctrl.showReviewForm = false"/>
 </form>

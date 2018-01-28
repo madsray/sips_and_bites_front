@@ -3,5 +3,5 @@
   <input type='text' placeholder="description of pairing" ng-model="ctrl.updateform.content" />
   <input type='text' placeholder="rating" ng-model="ctrl.updateform.rating" />
   <input type="hidden" ng-model='ctrl.rev.id'>
-  <input type="submit" value="Edit This Review" />
+  <input ng-click="ctrl.editform = false" type="submit" value="Edit This Review" />
 </form>

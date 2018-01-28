@@ -10,24 +10,29 @@
 </div>
 </div>
 
-<table ng-repeat="rev in ctrl.reviews">
-  <tr>
-    <td></td>
-    <td></td>
-    <td>Name</td>
-    <td>Review</td>
-    <td>Rating</td>
-  </tr>
+
+<hr>
+<div class="space">
+<table align="center">
 <tr>
+    <th></th>
+    <th></th>
+    <th>Name</th>
+    <th>Review</th>
+    <th>Rating</th>
+</tr>
+
+<tr ng-repeat="rev in ctrl.reviews">
   <td ng-click="ctrl.deleteReview(rev.id)">X</td>
-  <td ng-click="ctrl.editform = true; ctrl.editOne = rev.id">UPDATE</td>
+  <td ng-click="ctrl.editform = true; ctrl.editOne = rev.id; ctrl.editform = true">UPDATE</td>
   <td>{{rev.name}}</td>
   <td>{{rev.content}}</td>
   <td>{{rev.rating}}</td>
 </tr>
 </table>
+</div>
 
 
-  <h2>Create Review Form</h2>
-  <div ng-include="'partials/createRev.html'"></div>
+  <h2 ng-click="ctrl.reviewform = true">Create Review Form</h2>
+  <div ng-if="ctrl.reviewform === true" ng-include="'partials/createRev.html'"></div>
   <div ng-if="ctrl.editform === true" ng-include="'partials/editform.html'"></div>

@@ -9,5 +9,5 @@
   <option value="5">5</option>
 </select>
   <input type="hidden" ng-model='ctrl.barOne.id'>
-  <input type="submit" value="Create New Review" ng-click="ctrl.addReview(barOne.id)"/>
+  <input type="submit" value="Create New Review" ng-click="ctrl.addReview(barOne.id); ctrl.reviewform = false"/>
 </form>

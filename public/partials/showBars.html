@@ -1,5 +1,5 @@
 <div ng-click="ctrl.getReviews(bar)" ng-repeat="bar in ctrl.findBars">
   <h3>{{bar.name}}</h3>
 </div>
-<h2>+ ADD A BAR +</h2>
-<div ng-include="'partials/createbar.html'"></div>
+<h2 ng-click="ctrl.showReviewForm = true">+ ADD A BAR +</h2>
+<div ng-if="ctrl.showReviewForm === true" ng-include="'partials/createbar.html'"></div>
