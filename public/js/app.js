@@ -19,11 +19,13 @@ app.controller('MainController', ['$http', function($http){
   this.formdata = {};
   this.updateform = {};
   this.barform = {};
+  this.URL = 'https://sips-and-bites.herokuapp.com/';
+  // this.URL = 'http://localhost:3000';
 
   this.getAllCities = () => {
     $http({
       method: 'GET',
-      url: 'http://localhost:3000/cities'
+      url: this.URL + '/cities'
     }).then(response=> {
       console.log(response.data);
       this.cities = response.data;
@@ -39,7 +41,7 @@ app.controller('MainController', ['$http', function($http){
     this.cityID = city.id
     $http({
       method: 'GET',
-      url: 'http://localhost:3000/cities/' + this.cityID
+      url: this.URL + '/cities/' + this.cityID
     }).then(response => {
       this.cats = response.data.categories;
       this.showCatPage = true;
@@ -53,7 +55,7 @@ app.controller('MainController', ['$http', function($http){
     console.log(cat)
     $http({
       method: 'GET',
-      url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID
+      url: this.URL + '/cities/' + this.cityID + '/categories/' + this.catID
     }).then(response => {
 
 
@@ -70,7 +72,7 @@ app.controller('MainController', ['$http', function($http){
 
     $http({
       method: 'GET',
-      url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + bar.id
+      url: this.URL + '/cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + bar.id
     }).then(response => {
       this.name = response.data.name;
       this.special = response.data.special;
@@ -89,7 +91,7 @@ app.controller('MainController', ['$http', function($http){
 
   this.addReview = () => {
     $http({
-      url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.barOne.iD + '/reviews',
+      url: this.URL + '/cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.barOne.iD + '/reviews',
       method: 'POST',
       data: {
         name: this.formdata.name,
@@ -114,7 +116,7 @@ app.controller('MainController', ['$http', function($http){
   this.addBar = ()=> {
     console.log("CLICK")
     $http({
-      url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/',
+      url: this.URL + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/',
       method: 'POST',
       data: {
         name: this.barform.name,
@@ -136,7 +138,7 @@ app.controller('MainController', ['$http', function($http){
 
   this.deleteReview = (rev) => {
     $http({
-      url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.barOne.iD + '/reviews/' + rev ,
+      url: this.URL + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.barOne.iD + '/reviews/' + rev ,
       method: 'DELETE',
     }).then(response => {
       console.log(response.data)
@@ -148,7 +150,7 @@ this.editReview = (id) => {
   console.log("clickkkkk");
   console.log(this.editOne);
   $http({
-    url: 'http://localhost:3000/' + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.barOne.id + '/reviews/' + this.editOne,
+    url: this.URL + 'cities/' + this.cityID + '/categories/' + this.catID + '/bars/' + this.barOne.id + '/reviews/' + this.editOne,
     method: 'PUT',
     data: {
       name: this.updateform.name,
