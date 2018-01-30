@@ -86,6 +86,8 @@ h1:hover {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  width: 800px;
+  margin: auto;
 }
 a {
   color: white;
